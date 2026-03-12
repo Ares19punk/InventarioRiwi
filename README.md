@@ -20,3 +20,8 @@ Los datos capturados son:
  ## Task 4 (857): 
  Al final de realizar la operacion de registrar un prodcuto (nombre, precio, cantidad, costo total) se mostrara en
  consola todo el resumen de la operacion
+
+ ## Tasl 5 (858)
+ Al fianl del archivo inventario.py se incluye el resumen funcional del codigo
+
+ Mejoras: Se utiliza la estructura try-except para capturar excepciones cuando el usuario ingresa un valor que no sea un número en la parte 2 y 3 del programa   
