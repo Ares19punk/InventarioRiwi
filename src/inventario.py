@@ -1,5 +1,5 @@
 
-#TASK 2: Captura de datos en consola
+#Captura de datos en consola
 #Este bloque solicita la informacion basica del producto: nombre, precio unitario y cantidad
 
 print("-"*35)
@@ -43,8 +43,22 @@ while cantidad <= 0:
         print("Por favor vuelva a digitar la cantidad. Valor incorrecto")
         print("")
 
+# ---------------------------------------------------
+# Parte 4: Calcular el valor total del prodcuto 
+# multiplicando la cantidad por el precio unitario
+# ---------------------------------------------------
+costo_total = precio*cantidad
 
+# ---------------------------------------------------
+# Parte 5: Resumen de la información capturada y con
+# su respectivo valor total del prodcuto
+# ---------------------------------------------------
 
+print("-"*35)
+print("Resumen de información")
+print("-"*35)
+print("")
+print(f"Nombre del producto: {name_producto} | Precio: {precio} | Cantidad: {cantidad} | Total: {costo_total}")
 
 
 
