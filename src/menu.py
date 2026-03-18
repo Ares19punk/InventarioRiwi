@@ -1,16 +1,22 @@
 def agregar_producto():
+    print()
     print("|>--------1. Agregar producto------<|")
     print("|                                   |")
     nombre = input("| a. Digite el nombre de producto  \n| >  ")
     precio = float(input("| b. Digite el precio del producto\n| >  "))
     cantidad = input("| c. Digite la cantidad del producto\n| >  ")
-    print("|                      m             |")
-    lista = {"nombre" : nombre, 
+    print("|                                    |")
+    producto = {"nombre" : nombre, 
               "precio" : precio,
               "cantidad": cantidad}
-    return lista
+    return producto
 
-
+def mostrar_inventario(lista):
+    print("|>--------2. Mostrar inventario----<|")
+    print()
+    for i, nombre in enumerate(lista):
+        print(f" {i+1:<3}. Producto : {nombre["nombre"]:<12} | Precio : {nombre["precio"]:<8} | Cantidad : {nombre["cantidad"]} ")
+    print()
 print("-"*37)
 print("|     Sistema de Inventarios Riwi   |")
 print("-"*37)
@@ -25,7 +31,18 @@ print("| 4. Salir                          |")
 print("|                                   |")
 print("-"*37)
 
-lista_inv = []
+lista_inv = [
+    {
+        "nombre" : "Manzana", 
+        "precio" : 1000,
+        "cantidad": 5
+    },
+    {
+        "nombre" : "Pera", 
+        "precio" : 1500,
+        "cantidad": 11
+    }
+]
 
 option = 0
 while option < 4:
@@ -37,6 +54,7 @@ while option < 4:
                 lista_inv.append(diccionario)
                 pass
             case 2:
+                mostrar_inventario(lista_inv)
                 pass
             case 3:
                 pass
