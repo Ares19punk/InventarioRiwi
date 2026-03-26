@@ -13,7 +13,8 @@ def mostrar_menu():
     print("| 1. Agregar producto               |")
     print("| 2. Mostrar inventario             |")
     print("| 3. Calcular estadistica           |")
-    print("| 4. Salir                          |")
+    print("| 4. Eliminar producto              |")
+    print("| 5. Salir                          |")
     print("|                                   |")
     print("-"*37)
 
@@ -22,17 +23,30 @@ def mostrar_menu():
 #   y cantidad. Almacena los 3 datos dentro de una lista con diccionarios de clave y 
 #   valor y devuelve (return) un diccionario con las claves "nombre", "precio", "cantidad"
 #------------------------------------------------------------------------------------
-def agregar_producto():
+def agregar_producto(lista):
+    valido = False
+    producto = None
     print()
     print("|>--------1. Agregar producto------<|")
     print("|                                   |")
-    nombre = input("| a. Digite el nombre de producto  \n| >  ")
-    precio = float(input("| b. Digite el precio del producto\n| >  "))
-    cantidad = float(input("| c. Digite la cantidad del producto\n| >  "))
-    print("|                                   |")
-    producto = {"nombre" : nombre, 
-              "precio" : precio,
-              "cantidad": cantidad}
+    nombre = input("| a. Digite el nombre de producto  \n| >  ").capitalize()
+    for i, list in enumerate(lista):
+        if list["nombre"] == nombre:
+            print("|                                   |")
+            print("| > El prodcuto se encuentra        |")
+            print("|   registrado                      |")
+            print("|                                   |")
+            valido = True
+    if valido == False:
+
+        precio = float(input("| b. Digite el precio del producto\n| >  "))
+        cantidad = float(input("| c. Digite la cantidad del producto\n| >  "))
+        print("|                                   |")
+        producto = {"nombre" : nombre, 
+                "precio" : precio,
+                "cantidad": cantidad}
+    else:
+        pass
     return producto
 
 #------------------------------------------------------------------------------------
@@ -53,15 +67,39 @@ def mostrar_inventario(lista):
 #------------------------------------------------------------------------------------
 def calcular_estadistica(lista):
     suma = 0
+    cant = 0
+    mayor_precio = 0
+    nombre_precio_mayor = ''
+    mayor_cantidad = 0
+    name_cantidad_mayor = ''
     print("|>------3. Calcular estadistica----<|")
     num_producto = len(lista)
-    for i, precio in enumerate(lista):
-        suma = (precio["precio"]*precio["cantidad"]) + suma
+    for i, dic in enumerate(lista):
+        suma = (dic["precio"]*dic["cantidad"]) + suma
+        cant = (dic["cantidad"]) + cant
+
+        if dic["precio"] > mayor_precio:
+            mayor_precio = dic["precio"]
+            nombre_precio_mayor = dic["nombre"]
+        
+        if dic["cantidad"] > mayor_cantidad:
+            mayor_cantidad = dic["cantidad"]
+            name_cantidad_mayor = dic["nombre"]
+    
     print("|                                   |")
     print("| a. Valor total del inventario:    |")
-    print(f"|   > $ {suma:<10}                    |")
-    print("| b. Cantidad total de productos:   |")
+    print(f"|   > $ {suma:<10}                  |")
+    print("| b. Referencias total de productos:|")
     print(f"|   > {num_producto:<3}                           |")
+    print("| c. Unidades totales en inv:       |")
+    print(f"|   > {cant:<4}                          |")
+    print("| b. Producto con mayor precio:     |")
+    print(f"|   > Producto:   {nombre_precio_mayor:<10}        |")
+    print(f"|   > Precio  : $ {mayor_precio:<10}        |")
+    print("|                                   |")
+    print("| c. Producto con mayor sotck:      |")
+    print(f"|   > Producto:   {name_cantidad_mayor:<10}        |")
+    print(f"|   > Cantidad:   {mayor_cantidad:<10}        |")
     print("-"*35)
 
 #------------------------------------------------------------------------------------
@@ -84,10 +122,12 @@ def eliminar_producto(lista):
             si_no = input("| > ").upper()
             print("                               |")
             if si_no == "SI":
-                lista_inv.remove(nombre)
+                lista.remove(nombre)
             else:
                 print("| > Producto no encontrado          |")
                 print("|                                   |")
         else:
-            print("|                                   |")
-            print("| > Volviendo al menú               |")
+            pass
+    print("| > Volviendo al menú               |")
+    return lista
+

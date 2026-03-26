@@ -5,7 +5,7 @@ from servicio import mostrar_inventario, mostrar_menu, agregar_producto, calcula
 lista_inv = [
     {
         "nombre" : "Manzana", 
-        "precio" : 1000,
+        "precio" : 2000,
         "cantidad": 5
     },
     {
@@ -28,7 +28,7 @@ while option < 6:
         match option:
             case 1:
                 #9. Se almacena en la variable "diccionario" el resultado de la funcion agregar producto
-                diccionario = agregar_producto()
+                diccionario = agregar_producto(lista_inv)
                 #10. Se usa append para agregar a la lista el diccionario 
                 lista_inv.append(diccionario)
                 pass
@@ -41,15 +41,16 @@ while option < 6:
                 calcular_estadistica(lista_inv)
                 pass
             case 4:
-                #13. Para salir del menu
+                #13. Se invoca funcion para eliminar producto por el nombre en especifico
+                lista_inv = eliminar_producto(lista_inv)
+                pass
+            case 5:     
+             #14. Para salir del menu
                 print("-"*35)
                 print("Saliendo. Hasta pronto.....")
                 break
-            case 5:
-                lista_inv = eliminar_producto(lista_inv)
-                pass
     else:
-        #14. caso tal el usuario digite una opción invalida le mostrara el siguiente msj
+        #15. caso tal el usuario digite una opción invalida le mostrara el siguiente msj
         print("OPCIÓN INVALIDA. Vuelva a digitar la opción")
     print("Volviendo al menú.....")
     print("2")
