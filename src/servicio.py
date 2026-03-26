@@ -14,7 +14,9 @@ def mostrar_menu():
     print("| 2. Mostrar inventario             |")
     print("| 3. Calcular estadistica           |")
     print("| 4. Eliminar producto              |")
-    print("| 5. Salir                          |")
+    print("| 5. Buscar producto                |")
+    print("| 6. Actualizar prodcuto            |")
+    print("| 9. Salir                          |")
     print("|                                   |")
     print("-"*37)
 
@@ -131,3 +133,86 @@ def eliminar_producto(lista):
     print("| > Volviendo al menú               |")
     return lista
 
+#------------------------------------------------------------------------------------
+#5. Se implementa funcion para encontrar un producto determinado a partir del nombre
+#   suministrado por el usuario
+#------------------------------------------------------------------------------------
+def buscar_prodcuto(lista):
+    valide = False
+    print("-------------------------------------")
+    print("|>--------6. Buscar producto-------<|")
+    print("|                                   |")
+    name = input("| a. Digite el nombre de producto  \n| >  ").capitalize()
+    for i, nombre in enumerate(lista):
+        if name == nombre["nombre"]:
+            print("|                                   |")
+            print("| > Producto encontrado:            |")
+            print("|                                   |")
+            print(f"|   > Producto:   {nombre["nombre"]:<10}        |")
+            print(f"|   > Precio  : $ {nombre["precio"]:<10}        |")
+            print(f"|   > Cantidad:   {nombre["cantidad"]:<10}        |")
+            print("|                                   |")
+            valide = True
+    if valide == False:
+        print("|                                   |")
+        print("| > Prodcuto no encontrado...       |")
+        print("|                                   |")
+    else:
+        pass
+
+def actualizar_producto(lista):
+    new_name = ''
+    new_precio = 0
+    new_cantidad = 0
+    valido = False
+    print("-------------------------------------")
+    print("|>--------6. Buscar producto-------<|")
+    print("|                                   |")
+    name = input("| a. Digite el nombre de producto  \n| >  ").capitalize()
+    for i, nombre in enumerate(lista):
+        if name == nombre["nombre"]:
+            print("|                                   |")
+            print("| > Producto encontrado:            |")
+            print("|                                   |")
+            print(f"|   > Producto:   {nombre["nombre"]:<10}        |")
+            print(f"|   > Precio  : $ {nombre["precio"]:<10}        |")
+            print(f"|   > Cantidad:   {nombre["cantidad"]:<10}        |")
+            print("|                                   |")
+            print("|     ¿Que cambio desea hacer?      |")
+            print("|                                   |")
+            print("|    > Nombre de producto: (1)      |")
+            print("|    > Precio de prodcuto: (2)      |")
+            print("|    > Cantidad prdocuto : (3)      |")
+            print("|    > Salir             : (4)      |")
+            print("|                                   |")
+            option = input("|    Digite la opción:            \n| >  ")
+            if option == '1':
+                print("|  a. Digite el nuevo nombre del    |")
+                new_name = input("|     producto: \n| >  ").capitalize()
+                nombre["nombre"] = new_name
+                print("| > Nombre actualizado...           |")
+                print("|                                   |")
+                valido = True
+            elif option == '2':
+                print("|  a. Digite el nuevo precio del    |")
+                new_precio = float(input("|     producto: \n| > $ "))
+                nombre["precio"] = new_precio
+                print("| > Precio actualizado...           |")
+                print("|                                   |")
+                valido = True
+            elif option == '3':
+                print("|  a. Digite la nueva cantidad de   |")
+                new_cantidad = int(input("|     producto: \n| > $ "))
+                nombre["precio"] = new_cantidad
+                print("| > Cantidad actualizada...         |")
+                print("|                                   |")
+                valido = True
+            elif option == '4':
+                print("|                                   |")
+                print("| > Saliendo de la opción...        |")
+    if valido == False:
+        print("|                                   |")
+        print("| > Producto no encontrado...       |")
+        print("|                                   |")
+    return lista        
+            
