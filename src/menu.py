@@ -1,23 +1,12 @@
 
-from servicio import mostrar_inventario, mostrar_menu, agregar_producto, calcular_estadistica, eliminar_producto, buscar_prodcuto, actualizar_producto
+import csv 
+from servicio import mostrar_inventario, mostrar_menu, agregar_producto, calcular_estadistica, eliminar_producto, buscar_prodcuto, actualizar_producto, guardar_csv, cargar_csv
 
 #1. Se creo lista_inv para almacenar prdocutos
-lista_inv = [
-    {
-        "nombre" : "Manzana", 
-        "precio" : 2000,
-        "cantidad": 5
-    },
-    {
-        "nombre" : "Pera", 
-        "precio" : 1500,
-        "cantidad": 11
-    }
-]
-
+lista_inv = []
 
 option = 0
-
+seguro = False
 #6. Se usa bucle while para que el menu se repita hasta que el usuario decida salir
 while option < 9:
     mostrar_menu()
@@ -51,8 +40,10 @@ while option < 9:
             case 6:
                 lista_inv = actualizar_producto(lista_inv)
             case 7:
+                cargar_csv(lista_inv, seguro)
                 pass
             case 8:
+                guardar_csv(lista_inv, seguro)
                 pass
             case 9:     
              #14. Para salir del menu
@@ -61,6 +52,8 @@ while option < 9:
                 break
     else:
         #15. caso tal el usuario digite una opción invalida le mostrara el siguiente msj
-        print("OPCIÓN INVALIDA. Vuelva a digitar la opción")
-    print("Volviendo al menú.....")
-    print("2")
+        print("|                                   |")
+        print("| OPCIÓN INVALIDA.                  |")
+        print("|                                   |")
+        print("| Vuelva a digitar la opción        |")
+        print("|                                   |")

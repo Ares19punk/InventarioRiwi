@@ -1,3 +1,5 @@
+import csv
+
 #------------------------------------------------------------------------------------
 #1. Se implemento una funcion de interfaz de usuario que muestra un menu interactivo
 #------------------------------------------------------------------------------------
@@ -16,6 +18,8 @@ def mostrar_menu():
     print("| 4. Eliminar producto              |")
     print("| 5. Buscar producto                |")
     print("| 6. Actualizar prodcuto            |")
+    print("| 7. Cargar inventario              |")
+    print("| 8. Guardar inventario             |")
     print("| 9. Salir                          |")
     print("|                                   |")
     print("-"*37)
@@ -215,4 +219,72 @@ def actualizar_producto(lista):
         print("| > Producto no encontrado...       |")
         print("|                                   |")
     return lista        
+
+def guardar_csv(lista, seguro):
+
+    if seguro == True:
+        columnas = ["nombre","precio","cantidad"]
+
+        print("|  ¿Está seguto de guardar         |")
+        print("|      la información?             |")
+        print("|       (SI)      (NO)             |")
+        
+        si_no = input("| > ").upper()
+        if si_no == 'SI':
             
+            with open('data/inventario.csv', 'w', newline='') as file:
+                writer = csv.DictWriter(file, fieldnames=columnas)
+
+                writer.writeheader()
+
+                for producto in lista:
+                    writer.writerow(producto)
+            print("|                                   |")
+            print("| > Se guardaron los cambios.       |")
+        else:
+            print("|                                   |")
+            print("| > No se guardaron los cambios.    |")
+            print("| > Volviendo al menú               |")
+    else:
+        print("|                                   |")
+        print("| > Aún no se a cargado el inv      |")
+        print("| > Por favor cargar el inv         |")
+        print("| > Volviendo al menú               |")
+
+def cargar_csv(lista, valido):
+    nombre = ''
+    precio = 0
+    cantidad = 0
+    if not lista:
+        try:
+            with open('data/inventario.csv', 'r', newline='') as file:
+                reader = csv.DictReader(file)
+
+                for i, fila in enumerate(reader):
+                    nombre = fila["nombre"]
+                    precio = float(fila["precio"])
+                    cantidad = float(fila["cantidad"])
+
+                    producto = {"nombre" : nombre, 
+                    "precio" : precio,
+                    "cantidad": cantidad}
+
+                    lista.append(producto)
+                
+            print("|                                   |")
+            print("| > Inventario cargado              |")
+            print("|                                   |")
+            valido = True
+
+        except FileNotFoundError:
+            print("|                                   |")
+            print("| > Archivo no encontrado...        |")
+            print("|                                   |")
+        return lista
+        return valido
+    else:
+        print("|                                   |")
+        print("| > Ya se realizó el cargue         |")
+        print("|                                   |")
+    
+    
